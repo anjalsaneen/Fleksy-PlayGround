@@ -16,8 +16,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://maven.fleksy.com/maven") }
     }
-
 }
 
 rootProject.name = "Fleksy Integration"

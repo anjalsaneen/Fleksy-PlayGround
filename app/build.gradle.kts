@@ -17,6 +17,10 @@ android {
     namespace = "tech.okcredit.fleksyintegration"
     compileSdk = 34
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "tech.okcredit.fleksyintegration"
         minSdk = 24

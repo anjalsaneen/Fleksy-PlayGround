@@ -11,6 +11,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Send
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -100,6 +104,35 @@ class MainActivity : ComponentActivity() {
                         nextWordsList.value.forEach {
                             Text(it.type.name + ": " + it.label)
                         }
+
+                        Spacer(modifier = Modifier.height(36.dp))
+
+                        val dictionaryText = remember { mutableStateOf(TextFieldValue("")) }
+                        Text(
+                            "Add Words in dictionary:",
+                            fontWeight = FontWeight.Bold
+                        )
+
+                        OutlinedTextField(
+                            modifier = Modifier.padding(top = 4.dp).fillMaxWidth(),
+                            value = dictionaryText.value,
+                            placeholder = { Text("Add Word") },
+                            onValueChange = { newText ->
+                                dictionaryText.value = newText
+                            },
+                            trailingIcon = {
+                                IconButton(
+                                    onClick = {
+                                        fleksyLib.addWordsToDictionary(listOf(dictionaryText.value.text))
+                                        dictionaryText.value = TextFieldValue("")
+                                    }
+                                ) {
+                                    Icon(Icons.Filled.Send, contentDescription = "Add word")
+                                }
+                            }
+                        )
+
+                        Spacer(modifier = Modifier.height(24.dp))
                     }
                 }
             }

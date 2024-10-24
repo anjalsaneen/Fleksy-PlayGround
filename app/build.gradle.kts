@@ -1,6 +1,16 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+}
+
+val keysPropertiesFile = rootProject.file("keys.properties")
+val keysProperties = Properties()
+
+if (keysPropertiesFile.exists()) {
+    keysProperties.load(FileInputStream(keysPropertiesFile))
 }
 
 android {
@@ -18,6 +28,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField("String", "LICENCE_KEY", "\"${keysProperties["LICENCE_KEY"]}\"")
+        buildConfigField("String", "LICENCE_SECRET", "\"${keysProperties["LICENCE_SECRET"]}\"")
     }
 
     buildTypes {

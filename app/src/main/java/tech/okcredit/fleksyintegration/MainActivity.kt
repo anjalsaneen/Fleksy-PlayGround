@@ -11,9 +11,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import co.thingthing.fleksy.lib.api.LibraryConfiguration
+import co.thingthing.fleksy.lib.model.LanguageFile
 import tech.okcredit.fleksyintegration.ui.theme.FleksyIntegrationTheme
 
 class MainActivity : ComponentActivity() {
+
+    private val languageFile = LanguageFile.Asset("encrypted/resourceArchive-en-US.jet")
+
+    private val libraryConfiguration = LibraryConfiguration(
+        LibraryConfiguration.LicenseConfiguration(
+            "<your-license-key>",
+            "<your-license-secret>"
+        )
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
